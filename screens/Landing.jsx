@@ -4,7 +4,7 @@ import React from 'react'
 import CourseItem from '../component/CourseItem';
 import NoDataFound from '../component/NoDataFound';
 
-const Landing = () => {
+const Landing = ({ navigation }) => {
 
   const existingCourses = useSelector(state => state.courses.existingCourses);
 
@@ -19,7 +19,7 @@ const Landing = () => {
               image={item.image}
               title={item.title}
               price={item.price}
-              viewDetails={() => alert("Détails")}
+              viewDetails={() => navigation.navigate('Details', { courseId: item.id, title: item.title})}
               onAddToCart={() => alert("Panier")}
             />
           )}
