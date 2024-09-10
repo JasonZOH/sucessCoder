@@ -28,7 +28,10 @@ export function CoursesNavigator() {
         name='Details' 
         component={CourseInfos}
         options={({ route }) => ({title: route.params.title})} />
-      <CoursesStackNavigator.Screen name='Cart' component={Cart} />
+      <CoursesStackNavigator.Screen 
+        name='Cart' 
+        component={Cart} 
+      />
     </CoursesStackNavigator.Navigator>
   )
 }
