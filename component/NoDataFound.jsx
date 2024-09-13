@@ -9,7 +9,7 @@ const NoDataFound = ({ text }) => {
   )
 }
 
-export default NoDataFound
+export default NoDataFound;
 
 const styles = StyleSheet.create({
   container: {

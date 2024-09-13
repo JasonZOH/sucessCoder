@@ -1,13 +1,21 @@
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import globalStyles from '../styles/globalStyles';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { addToCart } from '../redux/actions/actionAddToCart';
 
 const CourseInfos = ({ navigation, route }) => {
 
   const { courseId } = route.params;
+  const dispatch = useDispatch();
   const selectedCourse = useSelector(state => state.courses.existingCourses.find(course => course.id === courseId));
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(selectedCourse));
+    navigation.goBack();
+    alert('Formation ajouter au panier');
+  }
 
   return (
     <View>
@@ -33,7 +41,7 @@ const CourseInfos = ({ navigation, route }) => {
         <View style={styles.footerBottom}>
           <MaterialIcons name="arrow-back-ios" size={24} color={globalStyles.white} onPress={() => navigation.goBack()}/>
 
-          <TouchableOpacity onPress={() => alert('Ajouter au panier')}>
+          <TouchableOpacity onPress={handleAddToCart}>
             <View style={styles.btnAddToCart}>
               <Text style={styles.btnAddToCartText}>Ajouter au panier</Text>
             </View>
