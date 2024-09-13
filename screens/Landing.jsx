@@ -1,18 +1,27 @@
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import React from 'react'
 import CourseItem from '../component/CourseItem';
 import NoDataFound from '../component/NoDataFound';
+import { addToCart } from '../redux/actions/actionAddToCart';
 
 const Landing = ({ navigation }) => {
 
   const existingCourses = useSelector(state => state.courses.existingCourses);
+  const courseToDisplay = existingCourses.filter(course => course.selected === false);
+  const dispatch = useDispatch();
 
-  if (existingCourses.length){
+  const handleAddToCart = (course) => {
+    dispatch(addToCart(course));
+    alert('Formation ajouter au panier');
+  }
+
+
+  if (courseToDisplay.length){
     return (
       <View>
         <FlatList
-          data={existingCourses}
+          data={courseToDisplay}
           keyExtractor={ (item) => item.id}
           renderItem={({item}) => (
             <CourseItem 
@@ -20,7 +29,7 @@ const Landing = ({ navigation }) => {
               title={item.title}
               price={item.price}
               viewDetails={() => navigation.navigate('Details', { courseId: item.id, title: item.title})}
-              onAddToCart={() => alert("Panier")}
+              onAddToCart={() => handleAddToCart(item)}
             />
           )}
         />
