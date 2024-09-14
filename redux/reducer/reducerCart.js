@@ -1,4 +1,3 @@
-import CartCourse from "../../data/paidCourseModel"
 import { ADDTOCART, REMOVECOURSECART } from "../constants";
 
 const initialState = {

@@ -1,14 +1,16 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import globalStyles from '../styles/globalStyles';
 import CourseInCart from '../component/CourseInCart';
 import NoDataFound from '../component/NoDataFound';
+import { removeCourseCart } from '../redux/actions/actionRemoveCourseCart';
 
 const Cart = () => {
 
   const cartCourses = useSelector(state => state.cart.cartCourses);
   const total = useSelector(state => state.cart.total);
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.cartContainer}>
@@ -22,7 +24,7 @@ const Cart = () => {
                 <CourseInCart
                   title={item.title}
                   price={item.price}
-                  onDelete={() => alert('Effacer la formation')}
+                  onDelete={() => dispatch(removeCourseCart(item.id))}
                 />
               )}
             />

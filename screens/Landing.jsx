@@ -22,7 +22,7 @@ const Landing = ({ navigation }) => {
       <View>
         <FlatList
           data={courseToDisplay}
-          keyExtractor={ (item) => item.id}
+          keyExtractor={ item => item.id}
           renderItem={({item}) => (
             <CourseItem 
               image={item.image}
