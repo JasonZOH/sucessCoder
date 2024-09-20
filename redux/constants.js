@@ -1,2 +1,3 @@
 export const ADDTOCART = 'ADDTOCART';
 export const REMOVECOURSECART = 'REMOVECOURSECART';
+export const ADDPAYMENT = 'ADDPAYMENT';

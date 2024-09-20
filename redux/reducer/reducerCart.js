@@ -1,4 +1,4 @@
-import { ADDTOCART, REMOVECOURSECART } from "../constants";
+import { ADDPAYMENT, ADDTOCART, REMOVECOURSECART } from "../constants";
 
 const initialState = {
   cartCourses: [],
@@ -23,6 +23,10 @@ const reducerCart = (state = initialState, action) => {
       const courseDelete = state.cartCourses.find(course => course.id === action.productId);
 
       return { ...state, cartCourses: newCartCoursesArray, total: state.total - courseDelete.price}
+
+    case ADDPAYMENT:
+      return initialState;
+      
     default:
       return state;
   }
